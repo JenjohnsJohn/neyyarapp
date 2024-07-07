@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:neyyarapp/domain/entities/user.dart';
 import '../../core/error/failures.dart';
-import 'package:elearning_app/domain/entities/user.dart';
 
 abstract class AuthenticationRepository {
   Future<Either<Failure, User>> login(String email, String password);

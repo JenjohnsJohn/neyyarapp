@@ -43,12 +43,13 @@ Future<void> init() async {
         categoryRepository: sl(),
         courseRepository: sl(),
         getMyCourses: sl(),
+        getCategories: sl(),
+        getFeaturedCourses: sl(),
       ));
   sl.registerFactory(() => AuthenticationBloc(
         login: sl(),
         logout: sl(),
         checkAuthenticationStatus: sl(),
-        signUp: sl(),
       ));
   sl.registerFactory(() => CourseDetailsBloc(
         getCourseDetails: sl(),
@@ -57,6 +58,7 @@ Future<void> init() async {
   // ... (Add other Bloc registrations as needed)
 
   // Use cases
+  sl.registerLazySingleton(() => CheckAuthenticationStatus(sl()));
   sl.registerLazySingleton(() => GetCategories(sl()));
   sl.registerLazySingleton(() => GetFeaturedCourses(sl()));
   sl.registerLazySingleton(() => GetMyCourses(sl()));

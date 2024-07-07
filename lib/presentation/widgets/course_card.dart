@@ -16,12 +16,11 @@ class CourseCard extends StatelessWidget {
       },
       child: Card(
         child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.stretch, // Stretch content to fill card width
+          // Stretch content to fill card width
           children: [
             Image.network(
               course.imageUrl, // Display the course image
-              height: 150,
+              height: 100,
               fit: BoxFit.cover,
             ),
             Padding(
@@ -33,14 +32,13 @@ class CourseCard extends StatelessWidget {
                     course.title,
                     style: Theme.of(context)
                         .textTheme
-                        .titleSmall, // Use headline6 style for title
+                        .bodyLarge, // Use headline6 style for title
                   ),
                   SizedBox(height: 4), // Add some spacing
                   Text(
                     course.instructor,
-                    style: Theme.of(context).textTheme.titleSmall,
+                    style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  SizedBox(height: 8),
                   Row(
                     children: [
                       Icon(Icons.star, color: Colors.yellow),

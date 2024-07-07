@@ -1,12 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:elearning_app/core/error/exceptions.dart';
-import 'package:elearning_app/core/error/failures.dart';
-import 'package:elearning_app/core/network/network_info.dart';
-import 'package:elearning_app/data/datasources/course_local_data_source.dart';
-import 'package:elearning_app/data/datasources/course_remote_data_source.dart';
-import 'package:elearning_app/data/models/course_model.dart';
-import 'package:elearning_app/domain/entities/course.dart';
-import 'package:elearning_app/domain/repositories/course_repository.dart';
+import 'package:neyyarapp/core/error/exceptions.dart';
+import 'package:neyyarapp/core/error/failures.dart';
+import 'package:neyyarapp/core/network/network_info.dart';
+import 'package:neyyarapp/data/datasources/course_local_data_source.dart';
+import 'package:neyyarapp/data/datasources/course_remote_data_source.dart';
+import 'package:neyyarapp/domain/entities/course.dart';
+import 'package:neyyarapp/domain/repositories/course_repository.dart';
 
 class CourseRepositoryImpl implements CourseRepository {
   final CourseRemoteDataSource remoteDataSource;
@@ -59,6 +58,64 @@ class CourseRepositoryImpl implements CourseRepository {
     } else {
       return Left(NetworkFailure());
     }
+  }
+
+  @override
+  Future<Either<Failure, void>> enrollInCourse(String courseId) {
+    // TODO: implement enrollInCourse
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<Course>>> getCoursesByCategory(String category) {
+    // TODO: implement getCoursesByCategory
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, List<Course>>> getFeaturedCourses() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteCourses = await remoteDataSource.getAllCourses();
+        localDataSource.cacheCourses(remoteCourses);
+        return Right(remoteCourses);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localCourses = await localDataSource.getCachedCourses();
+        return Right(localCourses);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Course>>> getMyCourses() async {
+    if (await networkInfo.isConnected) {
+      try {
+        final remoteCourses = await remoteDataSource.getAllCourses();
+        localDataSource.cacheCourses(remoteCourses);
+        return Right(remoteCourses);
+      } on ServerException {
+        return Left(ServerFailure());
+      }
+    } else {
+      try {
+        final localCourses = await localDataSource.getCachedCourses();
+        return Right(localCourses);
+      } on CacheException {
+        return Left(CacheFailure());
+      }
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Course>>> searchCourses(String query) {
+    // TODO: implement searchCourses
+    throw UnimplementedError();
   }
 
 // Implement other methods from the CourseRepository interface (searchCourses, getCoursesByCategory, etc.)

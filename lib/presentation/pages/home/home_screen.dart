@@ -103,8 +103,16 @@ class HomeScreen extends StatelessWidget {
           },
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(Icons.home),
+              icon: Icon(Icons.home_rounded),
               label: 'Home',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.live_tv_rounded),
+              label: 'Live Class',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications),
+              label: 'Notification',
             ),
             // ... other bottom navigation items
           ],

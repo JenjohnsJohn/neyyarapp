@@ -36,8 +36,9 @@ class _CourseListScreenState extends State<CourseListScreen> {
               itemCount: state.courses.length,
               itemBuilder: (context, index) {
                 return CourseCard(
-                    course: state.courses[
-                        index]); // Assuming you have a custom CourseCard widget
+                  course: state.courses[index],
+                  onTap: () {},
+                ); // Assuming you have a custom CourseCard widget
               },
             );
           } else if (state is CourseListError) {

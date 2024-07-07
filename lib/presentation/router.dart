@@ -21,11 +21,11 @@ class HomeRouter {
             builder: (_) => CourseDetailsScreen(courseId: args['courseId']));
       // Add other routes for the home feature
       default:
-        return _errorRoute();
+        return _errorRoute(settings);
     }
   }
 
-  static Route<dynamic> _errorRoute() {
+  static Route<dynamic> _errorRoute(RouteSettings settings) {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               body: Center(

@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:elearning_app/core/error/exceptions.dart';
-import 'package:elearning_app/data/models/course_model.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
+import 'package:neyyarapp/core/error/exceptions.dart';
+import 'package:neyyarapp/data/models/course_model.dart';
 
 abstract class CourseRemoteDataSource {
   Future<List<CourseModel>> getAllCourses();
@@ -19,7 +20,7 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
   Future<List<CourseModel>> getAllCourses() async {
     final response = await client.get(
       Uri.parse(
-          'https://api.example.com/courses'), // Replace with your actual API endpoint
+          'https://668a370b2c68eaf3211c3745.mockapi.io/api/v1/courses/courses'), // Replace with your actual API endpoint
       headers: {'Content-Type': 'application/json'},
     );
 

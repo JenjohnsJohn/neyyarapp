@@ -50,5 +50,17 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     }
   }
 
+  @override
+  Future<Either<Failure, User>> checkAuthenticationStatus() {
+    // TODO: implement checkAuthenticationStatus
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Either<Failure, void>> logout() {
+    // TODO: implement logout
+    throw UnimplementedError();
+  }
+
 // ... (implement other methods like logout, checkAuthenticationStatus)
 }

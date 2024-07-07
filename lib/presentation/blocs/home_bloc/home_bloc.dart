@@ -1,5 +1,7 @@
 import 'dart:async';
 import 'package:bloc/bloc.dart';
+import 'package:neyyarapp/domain/repositories/category_repository.dart';
+import 'package:neyyarapp/domain/repositories/course_repository.dart';
 import '../../../domain/entities/course.dart';
 import '../../../domain/entities/category.dart';
 import '../../../domain/usecases/get_categories.dart';
@@ -20,6 +22,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required GetCategories getCategories,
     required GetFeaturedCourses getFeaturedCourses,
     required GetMyCourses getMyCourses,
+    required CategoryRepository categoryRepository,
+    required CourseRepository courseRepository,
   })  : _getCategories = getCategories,
         _getFeaturedCourses = getFeaturedCourses,
         _getMyCourses = getMyCourses,

@@ -18,6 +18,18 @@ class AuthenticationSuccess extends AuthenticationState {
   List<Object> get props => [user];
 }
 
-class AuthenticationFailure extends AuthenticationState {}
+class AuthenticationFailure extends AuthenticationState {
+  final String message;
+
+  AuthenticationFailure({this.message = 'Authentication Failed'});
+
+  @override
+  List<Object> get props => [message];
+}
+
+class AuthenticationLoading extends AuthenticationState {
+  @override
+  List<Object> get props => [];
+}
 
 // Add more states as needed (e.g., for loading, error details)

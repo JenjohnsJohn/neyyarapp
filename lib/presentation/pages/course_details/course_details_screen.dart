@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../blocs/course_details_bloc/course_details_bloc.dart';
-import '../../../domain/entities/course.dart';
+import 'package:get_it/get_it.dart';
+import 'package:neyyarapp/domain/usecases/get_course_details.dart';
+import 'package:neyyarapp/presentation/blocs/course_details_bloc/course_details_bloc.dart';
+import 'package:neyyarapp/domain/entities/course.dart';
+
+import 'package:neyyarapp/domain/usecases/enroll_in_course.dart';
 
 class CourseDetailsScreen extends StatelessWidget {
   final String courseId;
@@ -13,8 +17,9 @@ class CourseDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => CourseDetailsBloc(
-        getCourseDetails: getIt(), // Get use case from DI container
-        enrollInCourse: getIt(),
+        getCourseDetails: RepositoryProvider.of<GetIt>(
+            context)<GetCourseDetails>(), // Get use case from DI container
+        enrollInCourse: RepositoryProvider.of<GetIt>(context)<EnrollInCourse>(),
       )..add(GetCourseDetailsEvent(courseId: courseId)),
       child: Scaffold(
         appBar: AppBar(
@@ -52,17 +57,17 @@ class CourseDetailsScreen extends StatelessWidget {
           SizedBox(height: 16),
           Text(
             course.title,
-            style: Theme.of(context).textTheme.headline5,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           SizedBox(height: 8),
           Text(
             'By ${course.instructor}',
-            style: Theme.of(context).textTheme.subtitle1,
+            style: Theme.of(context).textTheme.titleSmall,
           ),
           SizedBox(height: 16),
           Text(
             course.description,
-            style: Theme.of(context).textTheme.bodyText1,
+            style: Theme.of(context).textTheme.bodySmall,
           ),
           SizedBox(height: 16),
           // Add syllabus, enrollment button, reviews, etc. here

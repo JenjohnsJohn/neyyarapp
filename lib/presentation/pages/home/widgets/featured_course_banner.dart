@@ -18,6 +18,8 @@ class FeaturedCourseBanner extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap?.call(course!), // Navigate to course details if tapped
       child: Container(
+        height: 100,
+        width: 100,
         margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
@@ -26,29 +28,10 @@ class FeaturedCourseBanner extends StatelessWidget {
             fit: BoxFit.cover,
           ),
         ),
-        child: Stack(
-          children: [
-            Positioned(
-              bottom: 16,
-              left: 16,
-              child: Container(
-                padding: const EdgeInsets.all(8.0),
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(
-                      0.7), // Semi-transparent black background for text
-                  borderRadius: BorderRadius.circular(5.0),
-                ),
-                child: Text(
-                  course!.title,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
-            // Add more information overlays or buttons here as desired (e.g., instructor, category, "Enroll Now" button)
-          ],
+        child: Text(
+          course!.title,
+          style: const TextStyle(
+              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
     );

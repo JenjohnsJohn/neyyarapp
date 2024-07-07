@@ -54,4 +54,17 @@ class CategoryNotFoundFailure extends Failure {
       : super(message: message);
 }
 
+class InvalidInputFailure extends Failure {
+  final String message; // Detailed message about the specific validation error
+
+  const InvalidInputFailure({this.message = 'Invalid Input'});
+
+  @override
+  List<Object> get props => [message]; // For Equatable comparison
+}
+
+class EmailAlreadyInUseFailure extends Failure {
+  const EmailAlreadyInUseFailure({String message = 'Email already in use'})
+      : super(message: message);
+}
 // ... Add more specific failure types as needed

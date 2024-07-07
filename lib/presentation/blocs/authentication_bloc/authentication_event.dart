@@ -20,4 +20,32 @@ class LoggedIn extends AuthenticationEvent {
 
 class LoggedOut extends AuthenticationEvent {}
 
+class LoginRequested extends AuthenticationEvent {
+  final String email;
+  final String password;
+
+  const LoginRequested({
+    required this.email,
+    required this.password,
+  });
+
+  @override
+  List<Object> get props => [email, password];
+}
+
+class SignUpRequested extends AuthenticationEvent {
+  final String email;
+  final String password;
+  final String name; // Assuming you have a name field for signup
+
+  const SignUpRequested({
+    required this.email,
+    required this.password,
+    required this.name,
+  });
+
+  @override
+  List<Object> get props => [email, password, name];
+}
+
 // Add more events for signup, password reset, etc.

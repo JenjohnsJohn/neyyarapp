@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'package:elearning_app/core/error/exceptions.dart';
-import 'package:elearning_app/data/models/category_model.dart';
+import 'package:neyyarapp/core/error/exceptions.dart';
+import 'package:neyyarapp/data/models/category_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class CategoryLocalDataSource {
