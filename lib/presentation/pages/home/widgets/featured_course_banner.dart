@@ -18,8 +18,8 @@ class FeaturedCourseBanner extends StatelessWidget {
     return GestureDetector(
       onTap: () => onTap?.call(course!), // Navigate to course details if tapped
       child: Container(
-        height: 100,
-        width: 100,
+        height: 200,
+        width: double.maxFinite,
         margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),

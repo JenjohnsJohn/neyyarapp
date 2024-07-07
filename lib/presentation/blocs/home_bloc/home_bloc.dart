@@ -36,11 +36,14 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   Future<void> _onFetchCategories(
       FetchCategories event, Emitter<HomeState> emit) async {
-    final failureOrCategories = await _getCategories(); // Execute the use case
+    final failureOrCategories = await _getCategories();
     failureOrCategories.fold(
-      (failure) => emit(HomeError(message: failure.message)), // Handle error
-      (categories) =>
-          emit(HomeLoaded(categories: categories)), // Emit success state
+      (failure) => emit(HomeError(message: failure.message)),
+      (categories) => emit(HomeLoaded(
+        categories: categories,
+        featuredCourses: [], // Clear featured courses when changing categories
+        myCourses: state is HomeLoaded ? (state as HomeLoaded).myCourses : [],
+      )),
     );
   }
 
@@ -49,9 +52,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     final failureOrCourses =
         await _getFeaturedCourses(); // Execute the use case
     failureOrCourses.fold(
-      (failure) => emit(HomeError(message: failure.message)), // Handle error
-      (courses) =>
-          emit(HomeLoaded(featuredCourses: courses)), // Emit success state
+      (failure) => emit(HomeError(message: failure.message)),
+      (courses) => emit(HomeLoaded(
+        featuredCourses: courses,
+        categories: state is HomeLoaded ? (state as HomeLoaded).categories : [],
+        myCourses: state is HomeLoaded ? (state as HomeLoaded).myCourses : [],
+      )),
     );
   }
 
@@ -59,8 +65,13 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
       FetchMyCourses event, Emitter<HomeState> emit) async {
     final failureOrCourses = await _getMyCourses(); // Execute the use case
     failureOrCourses.fold(
-      (failure) => emit(HomeError(message: failure.message)), // Handle error
-      (courses) => emit(HomeLoaded(myCourses: courses)), // Emit success state
+      (failure) => emit(HomeError(message: failure.message)),
+      (courses) => emit(HomeLoaded(
+        myCourses: courses,
+        categories: state is HomeLoaded ? (state as HomeLoaded).categories : [],
+        featuredCourses:
+            state is HomeLoaded ? (state as HomeLoaded).featuredCourses : [],
+      )),
     );
   }
 }

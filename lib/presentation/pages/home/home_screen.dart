@@ -15,108 +15,106 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<HomeBloc>()
-        ..add(FetchCategories())
-        ..add(FetchFeaturedCourses())
-        ..add(FetchMyCourses()),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('Home'),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(48.0),
-            child: CategoryCarousel(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Home'),
+        // bottom: PreferredSize(
+        //   preferredSize: const Size.fromHeight(48.0),
+        //   child: CategoryCarousel(),
+        // ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.search),
+            onPressed: () {
+              // TODO: Handle search action (e.g., navigate to search screen)
+            },
           ),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.search),
-              onPressed: () {
-                // TODO: Handle search action (e.g., navigate to search screen)
-              },
-            ),
-          ],
-        ),
-        body: BlocBuilder<HomeBloc, HomeState>(
-          builder: (context, state) {
-            if (state is HomeLoading) {
-              return const Center(child: CircularProgressIndicator());
-            } else if (state is HomeLoaded) {
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    FeaturedCourseBanner(
-                      course: state.featuredCourses.isNotEmpty
-                          ? state.featuredCourses[0]
-                          : null,
-                      onTap: (course) {
-                        Navigator.pushNamed(
-                          context,
-                          '/courseDetails',
-                          arguments: {'courseId': course.id},
-                        );
-                      },
+        ],
+      ),
+      body: BlocBuilder<HomeBloc, HomeState>(
+        builder: (context, state) {
+          if (state is HomeLoading) {
+            return const Center(child: CircularProgressIndicator());
+          } else if (state is HomeLoaded) {
+            print(state.featuredCourses);
+            print(state.categories);
+            print(state.myCourses);
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  FeaturedCourseBanner(
+                    course: state.featuredCourses.isNotEmpty
+                        ? state.featuredCourses[0]
+                        : null,
+                    onTap: (course) {
+                      // Navigator.pushNamed(
+                      //   context,
+                      //   '/courseDetails',
+                      //   arguments: {'courseId': course.id},
+                      // );
+                    },
+                  ),
+                  CategoryCarousel(),
+                  MyCoursesSection(
+                    courses: state.myCourses,
+                    onTap: (course) {
+                      Navigator.pushNamed(
+                        context,
+                        '/courseDetails',
+                        arguments: {'courseId': course.id},
+                      );
+                    },
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.all(16.0),
+                    child: Text(
+                      'All Courses',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    MyCoursesSection(
-                      courses: state.myCourses,
-                      onTap: (course) {
-                        Navigator.pushNamed(
-                          context,
-                          '/courseDetails',
-                          arguments: {'courseId': course.id},
-                        );
-                      },
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Text(
-                        'All Courses',
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    ),
-                    CourseList(
-                      courses: state.featuredCourses,
-                      onTap: (course) {
-                        Navigator.pushNamed(
-                          context,
-                          '/courseDetails',
-                          arguments: {'courseId': course.id},
-                        );
-                      },
-                    ),
-                    // Add other sections/widgets here (e.g., premium courses, etc.)
-                  ],
-                ),
-              );
-            } else if (state is HomeError) {
-              return Center(child: Text(state.message));
-            } else {
-              return const SizedBox
-                  .shrink(); // Empty container if in initial state
-            }
-          },
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex: 0,
-          onTap: (index) {
-            // TODO: Handle navigation based on the tapped index
-          },
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.live_tv_rounded),
-              label: 'Live Class',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.notifications),
-              label: 'Notification',
-            ),
-            // ... other bottom navigation items
-          ],
-        ),
+                  ),
+                  CourseList(
+                    courses: state.featuredCourses,
+                    onTap: (course) {
+                      Navigator.pushNamed(
+                        context,
+                        '/courseDetails',
+                        arguments: {'courseId': course.id},
+                      );
+                    },
+                  ),
+                  // Add other sections/widgets here (e.g., premium courses, etc.)
+                ],
+              ),
+            );
+          } else if (state is HomeError) {
+            return Center(child: Text(state.message));
+          } else {
+            return const SizedBox
+                .shrink(); // Empty container if in initial state
+          }
+        },
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (index) {
+          // TODO: Handle navigation based on the tapped index
+        },
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_rounded),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.live_tv_rounded),
+            label: 'Live Class',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications),
+            label: 'Notification',
+          ),
+          // ... other bottom navigation items
+        ],
       ),
     );
   }

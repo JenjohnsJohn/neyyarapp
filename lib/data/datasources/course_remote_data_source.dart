@@ -25,8 +25,13 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
     );
 
     if (response.statusCode == 200) {
+      // final jsonData = json.decode(response.body);
+
       final List<dynamic> jsonList = json.decode(response.body);
-      return jsonList.map((json) => CourseModel.fromJson(json)).toList();
+      print(jsonList);
+      return jsonList
+          .map((coursesJson) => CourseModel.fromJson(coursesJson))
+          .toList();
     } else {
       throw ServerException(); // Handle API errors (e.g., 404, 500)
     }
@@ -35,12 +40,22 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
   @override
   Future<CourseModel> getCourseById(String id) async {
     final response = await client.get(
-      Uri.parse('https://api.example.com/courses/$id'),
-      headers: {'Content-Type': 'application/json'},
+      Uri.parse('https://api.example.com/courses'),
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': '9758bf97501341a9acec995e8b9b256f'
+      },
     );
 
     if (response.statusCode == 200) {
-      return CourseModel.fromJson(json.decode(response.body));
+      print("object");
+      final Map<String, dynamic> jsonData = json.decode(response.body);
+      final List<dynamic> coursesJson =
+          jsonData['data'] as List<dynamic>; // Extract the 'data' list
+
+      // final List<dynamic> jsonList = json.decode(response.body);
+      print(coursesJson);
+      return CourseModel.fromJson(coursesJson.first);
     } else {
       throw ServerException();
     }

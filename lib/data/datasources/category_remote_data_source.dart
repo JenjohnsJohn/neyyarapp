@@ -22,6 +22,7 @@ class CategoryRemoteDataSourceImpl implements CategoryRemoteDataSource {
 
     if (response.statusCode == 200) {
       final List<dynamic> jsonList = json.decode(response.body);
+      print(jsonList);
       return jsonList.map((json) => CategoryModel.fromJson(json)).toList();
     } else {
       throw ServerException(); // Handle API errors

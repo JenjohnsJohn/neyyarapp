@@ -9,6 +9,7 @@ class CourseCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(course);
     return GestureDetector(
       onTap: () {
         // Navigate to course details screen
