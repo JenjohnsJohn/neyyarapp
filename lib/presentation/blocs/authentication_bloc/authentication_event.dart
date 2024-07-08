@@ -36,7 +36,7 @@ class LoginRequested extends AuthenticationEvent {
 class SignUpRequested extends AuthenticationEvent {
   final String email;
   final String password;
-  final String name; // Assuming you have a name field for signup
+  final String name;
 
   const SignUpRequested({
     required this.email,
@@ -47,5 +47,3 @@ class SignUpRequested extends AuthenticationEvent {
   @override
   List<Object> get props => [email, password, name];
 }
-
-// Add more events for signup, password reset, etc.

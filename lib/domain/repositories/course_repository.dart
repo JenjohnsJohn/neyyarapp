@@ -10,5 +10,4 @@ abstract class CourseRepository {
   Future<Either<Failure, List<Course>>> getFeaturedCourses();
   Future<Either<Failure, List<Course>>> getMyCourses();
   Future<Either<Failure, List<Course>>> searchCourses(String query);
-// Add more methods as needed (e.g., searchCourses, getCoursesByCategory)
 }

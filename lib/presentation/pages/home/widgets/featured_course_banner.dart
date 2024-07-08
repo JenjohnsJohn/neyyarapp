@@ -22,17 +22,13 @@ class FeaturedCourseBanner extends StatelessWidget {
         width: double.maxFinite,
         margin: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(20.0),
           image: DecorationImage(
-            image: NetworkImage(course!.imageUrl), // Display course image
+            image: NetworkImage(course!.imageUrl),
             fit: BoxFit.cover,
           ),
         ),
-        child: Text(
-          course!.title,
-          style: const TextStyle(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-        ),
+        child: const SizedBox(),
       ),
     );
   }

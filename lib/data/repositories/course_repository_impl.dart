@@ -117,6 +117,4 @@ class CourseRepositoryImpl implements CourseRepository {
     // TODO: implement searchCourses
     throw UnimplementedError();
   }
-
-// Implement other methods from the CourseRepository interface (searchCourses, getCoursesByCategory, etc.)
 }

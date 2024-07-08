@@ -28,7 +28,7 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
       // final jsonData = json.decode(response.body);
 
       final List<dynamic> jsonList = json.decode(response.body);
-      print(jsonList);
+
       return jsonList
           .map((coursesJson) => CourseModel.fromJson(coursesJson))
           .toList();
@@ -54,7 +54,7 @@ class CourseRemoteDataSourceImpl implements CourseRemoteDataSource {
           jsonData['data'] as List<dynamic>; // Extract the 'data' list
 
       // final List<dynamic> jsonList = json.decode(response.body);
-      print(coursesJson);
+
       return CourseModel.fromJson(coursesJson.first);
     } else {
       throw ServerException();

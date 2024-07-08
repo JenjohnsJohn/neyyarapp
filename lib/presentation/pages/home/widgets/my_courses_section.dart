@@ -23,24 +23,20 @@ class MyCoursesSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-          child: Text(
-            'My Courses',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-        ),
         SizedBox(
           // Constrain the height of the list
-          height: 200, // Adjust this height based on your design
+          height: 280, // Adjust this height based on design
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: courses.length,
             itemBuilder: (context, index) {
               final course = courses[index];
-              return CourseCard(
-                course: course,
-                onTap: () => onTap(course),
+              return SizedBox(
+                width: 260,
+                child: CourseCard(
+                  course: course,
+                  onTap: () => onTap(course),
+                ),
               );
             },
           ),

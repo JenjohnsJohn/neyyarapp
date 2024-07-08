@@ -13,9 +13,7 @@ class UserModel extends User {
       id: json['id'],
       name: json['name'],
       email: json['email'],
-      profilePictureUrl: json[
-          'profile_picture_url'], // Adjust if your API uses a different key
-      // ... map other properties as needed
+      profilePictureUrl: json['profile_picture_url'],
     );
   }
 
@@ -25,7 +23,6 @@ class UserModel extends User {
       'name': name,
       'email': email,
       'profile_picture_url': profilePictureUrl,
-      // ... map other properties as needed
     };
   }
 }

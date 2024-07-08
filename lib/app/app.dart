@@ -22,16 +22,16 @@ class App extends StatelessWidget {
       ],
       child: MaterialApp(
         title: 'E-Learning App',
-        theme: appTheme, // Apply your app's theme
-        onGenerateRoute: AppRouter.onGenerateRoute, // Use your app's router
+        theme: appTheme,
+        onGenerateRoute: AppRouter.onGenerateRoute,
         // home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         //   builder: (context, state) {
         //     if (state is AuthenticationSuccess) {
-        //       return HomeScreen(); // Replace with your actual home screen widget
+        //       return HomeScreen();
         //     } else if (state is AuthenticationFailure) {
-        //       return LoginScreen(); // Replace with your login screen widget
+        //       return LoginScreen();
         //     } else {
-        //       return SplashScreen(); // You might have a splash screen while checking authentication status
+        //       return SplashScreen();
         //     }
         //   },
         // ),

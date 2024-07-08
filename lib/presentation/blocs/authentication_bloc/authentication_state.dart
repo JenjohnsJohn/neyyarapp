@@ -31,5 +31,3 @@ class AuthenticationLoading extends AuthenticationState {
   @override
   List<Object> get props => [];
 }
-
-// Add more states as needed (e.g., for loading, error details)

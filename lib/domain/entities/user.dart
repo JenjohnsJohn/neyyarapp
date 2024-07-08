@@ -6,8 +6,6 @@ class User extends Equatable {
   final String email;
   final String? profilePictureUrl; // Optional
 
-  // You can add more properties as needed (e.g., bio, enrolledCourses, completedCourses, etc.)
-
   const User({
     required this.id,
     required this.name,

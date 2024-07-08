@@ -7,6 +7,5 @@ abstract class AuthenticationRepository {
   Future<Either<Failure, User>> signUp(
       String email, String password, String name);
   Future<Either<Failure, void>> logout();
-  Future<Either<Failure, User>>
-      checkAuthenticationStatus(); // Optional (can be in a separate repository if you prefer)
+  Future<Either<Failure, User>> checkAuthenticationStatus();
 }

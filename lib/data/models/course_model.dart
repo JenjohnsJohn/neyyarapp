@@ -13,7 +13,6 @@ class CourseModel extends Course {
     required super.isFeatured,
     required super.isEnrolled,
     required super.category,
-    // Add other properties from your JSON response if needed (e.g., duration, syllabus, lectures)
   });
 
   factory CourseModel.fromJson(Map<String, dynamic> json) {
@@ -22,17 +21,13 @@ class CourseModel extends Course {
       title: json['title'],
       description: json['description'],
       instructor: json['instructor'],
-      imageUrl: json['imageUrl'], // Or the appropriate key from your API
-      rating: (json['rating'] as num)
-          .toDouble(), // Assuming rating is a number in the JSON
+      imageUrl: json['imageUrl'],
+      rating: (json['rating'] as num).toDouble(),
       numReviews: json['numReviews'],
-      price: (json['price'] as num)
-          .toDouble(), // Assuming price is a number in the JSON
+      price: (json['price'] as num).toDouble(),
       isFeatured: json['isFeatured'],
-      isEnrolled:
-          json['isEnrolled'], // This might depend on your API's structure
-      category: json['category'], // Or the appropriate key from your API
-      // ... map other properties as needed
+      isEnrolled: json['isEnrolled'],
+      category: json['category'],
     );
   }
 
@@ -49,7 +44,6 @@ class CourseModel extends Course {
       'isFeatured': isFeatured,
       'isEnrolled': isEnrolled,
       'category': category,
-      // ... map other properties as needed
     };
   }
 }

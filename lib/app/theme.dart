@@ -1,33 +1,40 @@
 import 'package:flutter/material.dart';
 
 final ThemeData appTheme = ThemeData(
-  primaryColor: Color(0xFF673AB7), // Deep Purple (Material Design)
-  hintColor: Color(0xFF9575CD), // Light Purple (Material Design)
+  primaryColor: const Color(0xFFD95C07),
+  hintColor: const Color(0xFFFFBD92),
   scaffoldBackgroundColor: Colors.white,
   fontFamily: 'Roboto', // Or your preferred font
 
-  textTheme: TextTheme(
-    titleSmall: TextStyle(
-        fontSize: 20.0, fontWeight: FontWeight.bold), // For section titles
-    bodyMedium: TextStyle(fontSize: 16.0), // For body text
+  textTheme: const TextTheme(
+    titleSmall: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+    bodyMedium: TextStyle(fontSize: 16.0),
     // ... Add other text styles as needed
   ),
 
-  appBarTheme: AppBarTheme(
-    backgroundColor: Color(0xFF673AB7), // Match the primary color
-    elevation: 0, // Remove shadow
-    centerTitle: true, // Center the title
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.white,
+    elevation: 0,
+    centerTitle: true,
   ),
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: Color(0xFF673AB7),
+      backgroundColor: const Color(0xFFD95C07),
       foregroundColor: Colors.white,
-      textStyle: TextStyle(fontSize: 16.0),
-      padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
+      textStyle: const TextStyle(fontSize: 16.0),
+      padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0)),
     ),
   ),
 
-  // Add other theme customizations as needed (e.g., input decoration, card theme, bottom navigation bar theme)
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    selectedItemColor: Color(0xFFD95C07),
+    unselectedItemColor: Colors.grey,
+    selectedIconTheme: IconThemeData(size: 30),
+    unselectedIconTheme: IconThemeData(size: 24),
+    showUnselectedLabels: true,
+    type: BottomNavigationBarType.fixed,
+    elevation: 8,
+  ),
 );

@@ -20,15 +20,13 @@ class CourseList extends StatelessWidget {
         primary: false,
         slivers: [
           SliverPadding(
-            // To add padding around the list
             padding: const EdgeInsets.all(16.0),
             sliver: SliverGrid(
-              // Or use SliverList for a vertical list view
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Number of columns in the grid
+                crossAxisCount: 2,
                 mainAxisSpacing: 16.0,
                 crossAxisSpacing: 16.0,
-                childAspectRatio: 0.75, // Adjust the aspect ratio as needed
+                childAspectRatio: .7,
               ),
               delegate: SliverChildBuilderDelegate(
                 (context, index) {

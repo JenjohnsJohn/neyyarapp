@@ -16,8 +16,7 @@ class AppRouter {
       case '/signup':
         return MaterialPageRoute(builder: (_) => SignupScreen());
       case '/courseDetails':
-        final args = settings.arguments
-            as Map<String, dynamic>; // Get course ID from arguments
+        final args = settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (_) => CourseDetailsScreen(courseId: args['courseId']),
         );

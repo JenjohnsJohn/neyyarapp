@@ -5,14 +5,13 @@ class Course extends Equatable {
   final String title;
   final String description;
   final String instructor;
-  final String imageUrl; // Or use an ImageProvider for more flexibility
+  final String imageUrl;
   final double rating;
   final int numReviews;
   final double price;
   final bool isFeatured;
   final bool isEnrolled;
   final String category;
-  // Add more properties as needed (e.g., duration, syllabus, lectures, etc.)
 
   Course({
     required this.id,
@@ -42,6 +41,4 @@ class Course extends Equatable {
         isEnrolled,
         category,
       ];
-
-// Add methods related to the course entity if needed (e.g., calculateProgress())
 }

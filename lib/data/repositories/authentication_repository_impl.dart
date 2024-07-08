@@ -61,6 +61,4 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
     // TODO: implement logout
     throw UnimplementedError();
   }
-
-// ... (implement other methods like logout, checkAuthenticationStatus)
 }

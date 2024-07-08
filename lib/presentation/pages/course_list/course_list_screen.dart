@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../presentation/blocs/course_list_bloc/course_list_bloc.dart';
-import '../../../presentation/widgets/course_card.dart'; // Your custom course card widget
+import '../../../presentation/widgets/course_card.dart';
 
 class CourseListScreen extends StatefulWidget {
   final Map<String, dynamic>?
@@ -38,7 +38,7 @@ class _CourseListScreenState extends State<CourseListScreen> {
                 return CourseCard(
                   course: state.courses[index],
                   onTap: () {},
-                ); // Assuming you have a custom CourseCard widget
+                );
               },
             );
           } else if (state is CourseListError) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:neyyarapp/presentation/blocs/home_bloc/home_bloc.dart';
 import 'package:neyyarapp/domain/entities/category.dart';
 
@@ -17,12 +18,16 @@ class _CategoryCarouselState extends State<CategoryCarousel> {
       builder: (context, state) {
         if (state is HomeLoaded) {
           return Container(
-            height: 48.0,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
+            height: 100.0,
+            child: MasonryGridView.count(
               itemCount: state.categories.length,
+              scrollDirection: Axis.horizontal,
+              crossAxisCount: 2,
+              mainAxisSpacing: 4,
+              crossAxisSpacing: 4,
               itemBuilder: (context, index) {
                 final category = state.categories[index];
+                print(state.categories[index]);
                 return GestureDetector(
                   onTap: () {
                     // Update the selected category in the bloc

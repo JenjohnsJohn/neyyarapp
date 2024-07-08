@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:neyyarapp/app/injection_container.dart';
+import 'package:neyyarapp/presentation/pages/home/widgets/category_dropdown.dart';
+import 'package:neyyarapp/presentation/pages/home/widgets/section_heading.dart';
 
 import '../../blocs/home_bloc/home_bloc.dart';
-import '../../widgets/course_card.dart'; // Import your course card widget
 import './widgets/category_carousel.dart';
 import './widgets/course_list.dart';
 import './widgets/featured_course_banner.dart';
 import './widgets/my_courses_section.dart';
-import '../course_details/course_details_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,14 +16,29 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home'),
-        // bottom: PreferredSize(
-        //   preferredSize: const Size.fromHeight(48.0),
-        //   child: CategoryCarousel(),
-        // ),
+        leading: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Ink(
+            decoration: const ShapeDecoration(
+              color: Color(0xFFD95C07),
+              shape: CircleBorder(),
+            ),
+            child: IconButton(
+              icon: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        ),
+        title: const SizedBox(height: 50, child: CategoryDropdown()),
         actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
           IconButton(
-            icon: const Icon(Icons.search),
+            icon: const CircleAvatar(
+              backgroundImage: AssetImage("assets/images/profile.jpg"),
+            ),
             onPressed: () {
               // TODO: Handle search action (e.g., navigate to search screen)
             },
@@ -36,15 +50,12 @@ class HomeScreen extends StatelessWidget {
           if (state is HomeLoading) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is HomeLoaded) {
-            print(state.featuredCourses);
-            print(state.categories);
-            print(state.myCourses);
             return SingleChildScrollView(
               child: Column(
                 children: [
                   FeaturedCourseBanner(
                     course: state.featuredCourses.isNotEmpty
-                        ? state.featuredCourses[0]
+                        ? state.featuredCourses[6]
                         : null,
                     onTap: (course) {
                       // Navigator.pushNamed(
@@ -54,7 +65,13 @@ class HomeScreen extends StatelessWidget {
                       // );
                     },
                   ),
+                  const SectionHeading(
+                    title: 'Categories',
+                  ),
                   CategoryCarousel(),
+                  const SectionHeading(
+                    title: 'My Courses',
+                  ),
                   MyCoursesSection(
                     courses: state.myCourses,
                     onTap: (course) {
@@ -65,13 +82,47 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: Text(
-                      'All Courses',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
+                  const SectionHeading(
+                    title: 'Top Courses For Kerala PSC',
+                  ),
+                  MyCoursesSection(
+                    courses: state.myCourses,
+                    onTap: (course) {
+                      Navigator.pushNamed(
+                        context,
+                        '/courseDetails',
+                        arguments: {'courseId': course.id},
+                      );
+                    },
+                  ),
+                  const SectionHeading(
+                    title: 'Top Courses For SSC',
+                  ),
+                  MyCoursesSection(
+                    courses: state.myCourses,
+                    onTap: (course) {
+                      Navigator.pushNamed(
+                        context,
+                        '/courseDetails',
+                        arguments: {'courseId': course.id},
+                      );
+                    },
+                  ),
+                  const SectionHeading(
+                    title: 'Top Courses Civil Services',
+                  ),
+                  MyCoursesSection(
+                    courses: state.myCourses,
+                    onTap: (course) {
+                      Navigator.pushNamed(
+                        context,
+                        '/courseDetails',
+                        arguments: {'courseId': course.id},
+                      );
+                    },
+                  ),
+                  const SectionHeading(
+                    title: 'All Courses',
                   ),
                   CourseList(
                     courses: state.featuredCourses,
@@ -83,7 +134,7 @@ class HomeScreen extends StatelessWidget {
                       );
                     },
                   ),
-                  // Add other sections/widgets here (e.g., premium courses, etc.)
+                  // Add other sections/widgets here
                 ],
               ),
             );
